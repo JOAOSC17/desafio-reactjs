@@ -1,0 +1,28 @@
+.profiles-card{
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: 5px 10px;
+    background-color: aqua;
+    width: 250px;
+    border-radius: 5px;
+}
+.profiles-card__image{
+    max-width: 100%;
+    border-top-left-radius:  5px;
+    
+    border-top-right-radius:  5px;
+
+}
+.profiles-card__text{
+    padding: 10px;
+    text-decoration: none;
+}
+.profiles-card__text__title:hover{
+    text-decoration: underline;
+}
+.profiles-card__text__bio{
+
+    max-width: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
