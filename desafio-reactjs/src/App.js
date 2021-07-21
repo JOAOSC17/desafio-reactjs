@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/profile' component={PageProfile}/>
+        <Route path='/profile/:login' component={PageProfile}/>
         <Route path='/' component={PageSearch}/>
       </Switch>
     </Router>

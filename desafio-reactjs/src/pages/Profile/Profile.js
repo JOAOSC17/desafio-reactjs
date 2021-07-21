@@ -1,9 +1,11 @@
+import ProfilesProfile from 'Profiles/Profile/Profile'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const PageProfile = () => {
+    const {login} = useParams();
     return (
-        <div>
-        </div>
+        <ProfilesProfile login={login}/>
     )
 }
 

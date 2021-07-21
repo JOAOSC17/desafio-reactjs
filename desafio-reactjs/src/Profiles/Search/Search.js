@@ -1,6 +1,5 @@
 import ProfilesCard from 'Profiles/Card/Card'
-import React, { useEffect, useState }  from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState }  from 'react'
 import api from 'Services/api'
 import {BiSearch} from 'react-icons/bi'
 const ProfilesSearch = () => {
@@ -11,7 +10,7 @@ const ProfilesSearch = () => {
         ev.preventDefault();
         console.log(search);
         api
-      .get(`/users/${search}`)
+      .get(`/${search}`)
       .then((response) => setProfile(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
@@ -44,7 +43,7 @@ const ProfilesSearch = () => {
                 placeholder="Type the username here..." value={search} onChange={(ev)=> setSearch(ev.target.value)}/>
                 <button type="submit"><BiSearch/>Buscar</button>
                 </form>
-            <Link style={{ textDecoration: 'none', color: 'black' }} to="/profile" ><ProfilesCard profile={profile}/></Link>  
+                <ProfilesCard profile={profile}/>
          
         </div>
     )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Card.css'
 const ProfilesCard = ({profile}) => {
      
@@ -9,6 +10,8 @@ const ProfilesCard = ({profile}) => {
         return <div>Nenhum resultado encontrado.</div>
     }
     return (
+        
+        <Link style={{ textDecoration: 'none', color: 'black' }} to={`/profile/${profile.login}`}>
     <div className="profiles-card">
             
             <img className="profiles-card__image" src={profile?.avatar_url} alt={`Foto de ${profile?.name}`}/>
@@ -17,6 +20,7 @@ const ProfilesCard = ({profile}) => {
             <p className="profiles-card__text__bio">{profile?.bio}</p>
             </div>
         </div>
+        </Link>  
         )
 }
 
