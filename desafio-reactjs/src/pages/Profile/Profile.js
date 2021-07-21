@@ -1,4 +1,4 @@
-import ProfilesProfile from 'Profiles/Profile/Profile'
+import ProfilesProfile from 'Components/Profile/Profile'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 

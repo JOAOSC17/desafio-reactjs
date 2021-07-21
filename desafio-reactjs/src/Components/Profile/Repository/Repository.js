@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from 'Services/api';
-
+import './Repository.css'
 const ProfilesRepository = ({login}) => {
     const [repository, repositoryInfo]= useState();
 
@@ -30,6 +30,7 @@ const ProfilesRepository = ({login}) => {
                  <span>stars</span>
                  <span>Updated n days ago</span>
                  </div>
+                 
      </div>
     )
 }

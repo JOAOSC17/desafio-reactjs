@@ -1,4 +1,4 @@
-import ProfilesCard from 'Profiles/Card/Card'
+import ProfilesCard from 'Components/Card/Card'
 import React, { useState }  from 'react'
 import api from 'Services/api'
 import {BiSearch} from 'react-icons/bi'
@@ -37,7 +37,8 @@ const ProfilesSearch = () => {
                 <h1 className="profiles-search__title">Search Devs</h1>
             <form className="profiles-search-form" onSubmit={onSubmit}>
                 <input 
-                type="search" 
+                type="text" 
+                autocomplete="off"
                 className="profiles-search-form__input"
                 placeholder="Type the username here..." value={search} onChange={(ev)=> setSearch(ev.target.value)}/>
                 <button className="profiles-search-form__button" type="submit"><BiSearch className="profiles-search-form__button__search"/>Buscar</button>

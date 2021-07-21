@@ -1,4 +1,4 @@
-import ProfilesSearch from 'Profiles/Search/Search'
+import ProfilesSearch from 'Components/Search/Search'
 import React from 'react'
 
 const PageSearch = () => {
