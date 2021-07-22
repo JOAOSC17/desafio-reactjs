@@ -12,6 +12,8 @@ import { Link, useHistory } from 'react-router-dom';
 const ProfilesProfile = ({login}) => {
     const [profileSingle, setProfileSingle] = useState([])
     
+    const [repositories, repositoriesInfo]= useState();
+    
     const history = useHistory();
         
     useEffect(()=>{
@@ -32,6 +34,26 @@ const ProfilesProfile = ({login}) => {
     },[])
     function backToSearch(){
         history.push('/');
+    }
+    useEffect(()=>{
+            console.log(login)
+              api
+             .get(`/${login}/repos`)
+             .then((response) => {
+                 console.log(response.data);
+                 repositoriesInfo(response.data);
+              })
+             .catch((err) => {
+               console.error("ops! ocorreu um erro" + err);
+             })
+
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+      },[])
+        
+
+      
+      if (!repositories){
+        return <div className="profiles-repository__name">Loading...</div>
     }
     return (
         <div className="profiles-profile">
@@ -55,7 +77,9 @@ const ProfilesProfile = ({login}) => {
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
                </div>
           
-               <ProfilesRepository login={login}/>
+               {repositories.slice(0,5).map(repository=>
+               <ProfilesRepository login={login} repository={repository}/>
+               )}
         </div>
     )
 }
