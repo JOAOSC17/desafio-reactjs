@@ -1,0 +1,39 @@
+.profiles-repository{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    border-bottom: 1px solid #cfcfcf;
+}
+.profiles-repository__link{
+    text-decoration: none;
+    color: #3B4252;
+}
+.profiles-repository__name{
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 300;
+  text-align: left;
+  margin: 5px 40px;
+}
+.profiles-repository__description{
+    max-width: 900px;
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: left;
+    margin: 5px 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.profiles-repository-info{
+    font-weight: 300;
+    color: rgb(189, 189, 189);
+    text-align: left;
+    margin: 10px 40px;
+    font-size: 18px;
+}
+.profiles-repository-info span:nth-child(2n){
+    margin-left: 25px;
+}
