@@ -28,3 +28,18 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+@media screen and (max-width:560px){
+    .profiles-card{
+        width: 200px;
+    }
+    .profiles-card__text{
+        padding: 10px;
+    }
+    .profiles-card__text__title{
+        font-size: 18px;
+    }
+    .profiles-card__text__bio{
+        max-width: 200px;
+        font-size: 12px;
+    }
+}

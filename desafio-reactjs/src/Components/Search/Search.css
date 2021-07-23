@@ -52,3 +52,26 @@
     padding: 5px;
     border-radius: 5px;
 }
+@media screen and (max-width:560px){
+    .profiles-search{
+        margin-top: 80px;
+    }
+    .profiles-search__title{
+        font-size: 30px;
+    }
+    .profiles-search-form{
+        display: flex;
+        width: 300px;
+        height: 30px;
+    }
+    .profiles-search-form__input{
+        width: 75%;
+    }
+    .profiles-search-form__input::placeholder{
+        font-size: 12px;
+    }
+    .profiles-search-form__button{
+        color: #fff;
+        font-size: 12px;
+    }
+}

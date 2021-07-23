@@ -1,8 +1,8 @@
 .profiles-repository{
-    width: 70%;
+    max-width: 70%;
     display: flex;
     flex-direction: column;
-    height: 120px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #cfcfcf;
 }
 .profiles-repository__link{
@@ -36,4 +36,29 @@
 }
 .profiles-repository-info span:nth-child(2n){
     margin-left: 25px;
+}
+@media screen and (max-width:800px){
+    .profiles-repository{
+        max-width: 100%;
+        padding-bottom: 5px;
+    }
+    .profiles-repository__name{
+      font-size: 20px;
+      line-height: 30px;
+      white-space: nowrap;
+    }
+    .profiles-repository__description{
+        max-width: 700px;
+        font-size: 15px;
+    }
+    .profiles-repository-info{
+        font-weight: 300;
+        color: rgb(189, 189, 189);
+        text-align: left;
+        margin: 8px 40px;
+        font-size: 12px;
+    }
+    .profiles-repository-info span:nth-child(2n){
+        margin-left: 15px;
+    }
 }

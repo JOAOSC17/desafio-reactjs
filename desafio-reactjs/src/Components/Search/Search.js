@@ -1,5 +1,5 @@
 import ProfilesCard from 'Components/Card/Card'
-import React, { Fragment, useState }  from 'react'
+import React, { useState }  from 'react'
 import api from 'Services/api'
 import {BiSearch} from 'react-icons/bi'
 import './Search.css'
@@ -14,8 +14,8 @@ const ProfilesSearch = () => {
     .get(`/${search}`)
     .then(
       (response) =>{ 
-     setProfile(response.data)
-     console.log(profile);
+        setProfile(response.data)
+        console.log(profile);
     })
     .catch((err) => {
       console.error("ops! ocorreu um erro" + err)

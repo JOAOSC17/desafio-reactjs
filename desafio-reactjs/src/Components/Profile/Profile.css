@@ -3,7 +3,7 @@
     flex-direction: column;
     float: left;
     background-color: #3B4252;
-    width: 400px;
+    max-width: 400px;
     height: 100%;   
     color: #ECEFF4;
 }
@@ -52,4 +52,114 @@
 .profiles-profile-side-bar__button{
     padding: 5px;
     margin-bottom: 15px;
+}
+.profiles-profile__icon-back{
+    display: none;
+}
+@media screen and (max-width:800px){
+    .profiles-profile{
+        display: flex;
+        flex-direction: column;
+    }
+    .profiles-profile-side-bar{
+        display: flex;
+        max-width:100%;
+        padding-bottom: 5px; 
+        color: #ECEFF4;
+    }
+    .profiles-profile-side-bar__image{
+        max-width: 200px;
+        margin: 20px 5px;
+    }
+    .profiles-profile-side-bar__name{
+        font-size: 30px;
+        margin-top:5px;
+        margin-left: 15px;
+    }
+    .profiles-profile-side-bar__username{
+        font-size: 15px;
+        margin-left: 15px;
+    }
+    .profiles-profile-side-bar__bio{
+      font-size: 15px;
+      text-align: left;
+      margin: 5px 10px;
+    }
+    .profiles-profile-side-bar__info{
+        display: inline-flex;
+        justify-content: space-around;
+        font-size: 15px;
+        
+    }
+    .profiles-profile-side-bar__connect{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        white-space: nowrap;
+        line-height: 20px;
+        font-size: 12px;
+        margin-left: 5px;
+        margin-top: 15px;
+    }
+    .icons-connect{
+        margin-right: 5px;
+    }
+    .profiles-profile-side-bar__button{
+        display: none;
+    }
+    .profiles-profile__icon-back{
+        display: inline;
+        position: absolute;
+
+        font-size: 50px;
+    }
+}
+@media screen and (max-width:430px){
+    .profiles-profile-side-bar{
+        display: flex;
+        max-width:100%;
+        padding-bottom: 20px;
+        color: #ECEFF4;
+    }
+    .profiles-profile-side-bar__image{
+        max-width: 150px;
+        margin: 30px 5px;
+    }
+    .profiles-profile-side-bar__name{
+        font-size: 20px;
+        margin-top:5px;
+        margin-left: 10px;
+    }
+    .profiles-profile-side-bar__username{
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    .profiles-profile-side-bar__bio{
+      font-size: 10px;
+      margin: 5px 10px;
+    }
+    .profiles-profile-side-bar__info{
+        font-size: 12px;
+    }
+    .profiles-profile-side-bar__connect{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        white-space: nowrap;
+        line-height: 10px;
+        font-size: 10px;
+        margin-top: 10px;
+    }
+    .icons-connect{
+        margin-right: 0px;
+    }
+    .profiles-profile-side-bar__button{
+        display: none;
+    }
+    .profiles-profile__icon-back{
+        display: inline;
+        position: absolute;
+        top: 10px;
+        font-size: 30px;
+    }
 }

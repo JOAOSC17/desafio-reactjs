@@ -5,15 +5,15 @@ import { IoPeopleSharp } from 'react-icons/io5'
 import { BsHeart, BsStar } from 'react-icons/bs'
 import { FaRegBuilding } from 'react-icons/fa'
 import { FiMapPin, FiTwitter, FiLink } from 'react-icons/fi'
+import { VscArrowSmallLeft } from 'react-icons/vsc'
 import { GoMail } from 'react-icons/go'
 import './Profile.css'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const ProfilesProfile = ({login}) => {
     const [profileSingle, setProfileSingle] = useState([])
-    
     const [repositories, repositoriesInfo]= useState();
-    
+    const limit = 5;
     const history = useHistory();
         
     useEffect(()=>{
@@ -30,7 +30,6 @@ const ProfilesProfile = ({login}) => {
        })
        
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
     },[])
     function backToSearch(){
         history.push('/');
@@ -49,8 +48,6 @@ const ProfilesProfile = ({login}) => {
 
           // eslint-disable-next-line react-hooks/exhaustive-deps
       },[])
-        
-
       
       if (!repositories){
         return <div className="profiles-repository__name">Loading...</div>
@@ -58,6 +55,7 @@ const ProfilesProfile = ({login}) => {
     return (
         <div className="profiles-profile">
             <div className="profiles-profile-side-bar"> 
+            <span onClick={backToSearch} className="profiles-profile__icon-back"><VscArrowSmallLeft/></span>
                 <img className="profiles-profile-side-bar__image" src={profileSingle.avatar_url} alt={`Foto de ${profileSingle.name}`}/>
             <h1 className="profiles-profile-side-bar__name">{profileSingle.name} </h1>
            <span className="profiles-profile-side-bar__username">@{profileSingle.login}</span>
@@ -65,7 +63,7 @@ const ProfilesProfile = ({login}) => {
            <div className="profiles-profile-side-bar__info">
                <span><IoPeopleSharp/> {`${profileSingle.followers} followers`}</span>
                <span><BsHeart/> {`${profileSingle.following} following`}</span>
-               <span><BsStar/> {`${profileSingle.star} stars`}</span>
+               <span><BsStar/> {`${profileSingle.starred_count} star`}</span>
                </div> 
                <div className="profiles-profile-side-bar__connect">
                    <span><FaRegBuilding className="icons-connect"/>{(profileSingle.orgs_url!==undefined)?(`${profileSingle.organizations_url}`) :('nao tem orgs')}</span>
@@ -77,9 +75,9 @@ const ProfilesProfile = ({login}) => {
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
                </div>
           
-               {repositories.slice(0,5).map(repository=>
+               {repositories.slice(0,limit).map(repository=>
                <ProfilesRepository login={login} repository={repository}/>
-               )}
+ ) }
         </div>
     )
 }
