@@ -10,8 +10,8 @@ const ProfilesRepository = ({repository}) => {
                          
       <p className="profiles-repository__description">{(repository.description!==null)?(`${repository.description}`) :('No description, website, or topics provided')}</p>
                 <div className="profiles-repository-info">
-                 <span><BsStar/> {(repository.stargazers_count < 2 )?  (`${repository.stargazers_count} star`) : (`${repository.stargazers_count} stars`) }</span>
-                 <span><BsFillCircleFill/> Updated n days ago</span>
+                <span><BsStar/> {(repository.stargazers_count < 2 )?  (`${repository.stargazers_count} star`) : (`${repository.stargazers_count} stars`) }</span>
+                  <span><BsFillCircleFill/> Updated n days ago</span>
                  </div>
      </a>
      </div>

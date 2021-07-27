@@ -50,11 +50,22 @@
     margin-right: 15px;
 }
 .profiles-profile-side-bar__button{
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 15px;
 }
 .profiles-profile__icon-back{
     display: none;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background:  #3B4252;
+    border-radius: 10px;
 }
 @media screen and (max-width:800px){
     .profiles-profile{
@@ -112,6 +123,10 @@
         position: absolute;
 
         font-size: 50px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background:  #919191;
     }
 }
 @media screen and (max-width:430px){

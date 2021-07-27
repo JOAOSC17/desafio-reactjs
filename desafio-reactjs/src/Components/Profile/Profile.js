@@ -31,6 +31,10 @@ const ProfilesProfile = ({login}) => {
        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+    
+    function sortDesc(){
+     [...repositories].sort((a, b)=>a - b)
+    }
     function backToSearch(){
         history.push('/');
     }
@@ -41,6 +45,7 @@ const ProfilesProfile = ({login}) => {
              .then((response) => {
                  console.log(response.data);
                  repositoriesInfo(response.data);
+                 sortDesc();
               })
              .catch((err) => {
                console.error("ops! ocorreu um erro" + err);
@@ -74,10 +79,12 @@ const ProfilesProfile = ({login}) => {
                </div>
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
                </div>
-          
-               {repositories.slice(0,limit).map(repository=>
-               <ProfilesRepository login={login} repository={repository}/>
- ) }
+{/* {[...repositories].sort((a, b) => {
+    b[repository.starred_count]-a[repository.starred_count]
+     }) } */}
+{repositories.slice(0,limit).map(repository=>
+<ProfilesRepository login={login} repository={repository}/>,
+)}
         </div>
     )
 }
