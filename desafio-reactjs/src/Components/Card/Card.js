@@ -5,7 +5,7 @@ const ProfilesCard = ({profile}) => {
      if(profile === null ){
         return <div>Carregando...</div>
     }
-    if(profile === ''){
+    if(profile === undefined){
         return <div></div>
     }
     return (

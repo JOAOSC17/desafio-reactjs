@@ -4,18 +4,20 @@ import api from 'Services/api'
 import {BiSearch} from 'react-icons/bi'
 import './Search.css'
 const ProfilesSearch = () => {
-    const [profile, setProfile] = useState('');
-    const [search, setSearch] = useState();
+    const [profile, setProfile] = useState([]);
+    const [search, setSearch] = useState('');
+    const [fetch, setFetch] = useState(false);
+    function onHandleChange (ev){
+      setSearch(ev.target.value);
+   }
    async function onSubmit(ev){
       ev.preventDefault();
-      
-      console.log(search);
       api
     .get(`/${search}`)
     .then(
       (response) =>{ 
         setProfile(response.data)
-        console.log(profile);
+        setFetch(true);
     })
     .catch((err) => {
       console.error("ops! ocorreu um erro" + err)
@@ -28,13 +30,12 @@ const ProfilesSearch = () => {
             <form className="profiles-search-form" onSubmit={onSubmit}>
                 <input 
                 type="text" 
-                autocomplete="off"
+                autoComplete="off"
                 className="profiles-search-form__input"
-                placeholder="Type the username here..." value={search} onChange={(ev)=> setSearch(ev.target.value)}/>
+                placeholder="Type the username here..." value={search} name="search" onChange={onHandleChange} />
                 <button  className="profiles-search-form__button" type="submit"><BiSearch className="profiles-search-form__button__search"/>Buscar</button>
                 </form>
-                <ProfilesCard profile={profile} />
-         
+         {fetch && profile &&(<ProfilesCard profile={profile} />)}
         </div>
     )
 }
