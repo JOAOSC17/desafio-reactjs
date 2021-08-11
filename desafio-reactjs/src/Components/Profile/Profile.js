@@ -17,12 +17,9 @@ const ProfilesProfile = ({login}) => {
     const history = useHistory();
         
     useEffect(()=>{
-        
-    console.log(login);
         api
        .get(`/${login}`)
        .then((response) => {
-           console.log(response.data);
            setProfileSingle(response.data)
         })
        .catch((err) => {
@@ -30,27 +27,23 @@ const ProfilesProfile = ({login}) => {
        })
        
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
-    
-    function sortDesc(){
-     [...repositories].sort((a, b)=>a - b)
-    }
+    },[]);
     function backToSearch(){
         history.push('/');
     }
     useEffect(()=>{
-            console.log(login)
               api
              .get(`/${login}/repos`)
-             .then((response) => {
-                 console.log(response.data);
-                 repositoriesInfo(response.data);
-                 sortDesc();
-              })
+             .then((response) => response.data).then((data)=>{
+                const sorted = [...data].sort((a,b)=>{
+                    return b.stargazers_count - a.stargazers_count
+                });
+                console.log(sorted);
+                repositoriesInfo(sorted);
+             })
              .catch((err) => {
                console.error("ops! ocorreu um erro" + err);
              })
-
           // eslint-disable-next-line react-hooks/exhaustive-deps
       },[])
       
@@ -82,8 +75,8 @@ const ProfilesProfile = ({login}) => {
 {/* {[...repositories].sort((a, b) => {
     b[repository.starred_count]-a[repository.starred_count]
      }) } */}
-{repositories.slice(0,limit).map(repository=>
-<ProfilesRepository login={login} repository={repository}/>,
+{[...repositories].slice(0,limit).map((repository, index) =>
+<ProfilesRepository login={login} key={index} repository={repository}/>,
 )}
         </div>
     )
