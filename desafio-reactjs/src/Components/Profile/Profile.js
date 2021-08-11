@@ -19,6 +19,7 @@ const ProfilesProfile = ({login}) => {
     const [totalPages, setTotalPages] = useState(0);
     const startIndex = ( page - 1 ) * LIMITS_OF_PAGE;
     const limitOfRepo = [...repositories].slice(startIndex, startIndex + LIMITS_OF_PAGE);
+    const pages = [...Array(totalPages).keys()];
     const history = useHistory();
         
     useEffect(()=>{
@@ -36,22 +37,16 @@ const ProfilesProfile = ({login}) => {
     function backToSearch(){
         history.push('/');
     }
-    const pages = [...Array(totalPages).keys()];
     function nextPage(){
         if(page < pages.length){
             setPage(page+1);
-        }else{
-
         }
     }
     function prevPage(){
         if(page > 1){
             setPage(page-1);
-        }else if(page===1){
-            
         }
     }
-    console.log(page);
     useEffect(()=>{
               api
              .get(`/${login}/repos`)
