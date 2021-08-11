@@ -9,11 +9,16 @@ import { VscArrowSmallLeft } from 'react-icons/vsc'
 import { GoMail } from 'react-icons/go'
 import './Profile.css'
 import { useHistory } from 'react-router-dom';
+import ProfilesPagination from 'Components/Profile/Pagination/Pagination';
+import { LIMITS_OF_PAGE } from './consts';
 
 const ProfilesProfile = ({login}) => {
     const [profileSingle, setProfileSingle] = useState([])
-    const [repositories, repositoriesInfo]= useState();
-    const limit = 5;
+    const [repositories, setRepositories]= useState([]);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const startIndex = ( page - 1 ) * LIMITS_OF_PAGE;
+    const limitOfRepo = [...repositories].slice(startIndex, startIndex + LIMITS_OF_PAGE);
     const history = useHistory();
         
     useEffect(()=>{
@@ -31,6 +36,22 @@ const ProfilesProfile = ({login}) => {
     function backToSearch(){
         history.push('/');
     }
+    const pages = [...Array(totalPages).keys()];
+    function nextPage(){
+        if(page < pages.length){
+            setPage(page+1);
+        }else{
+
+        }
+    }
+    function prevPage(){
+        if(page > 1){
+            setPage(page-1);
+        }else if(page===1){
+            
+        }
+    }
+    console.log(page);
     useEffect(()=>{
               api
              .get(`/${login}/repos`)
@@ -38,15 +59,14 @@ const ProfilesProfile = ({login}) => {
                 const sorted = [...data].sort((a,b)=>{
                     return b.stargazers_count - a.stargazers_count
                 });
-                console.log(sorted);
-                repositoriesInfo(sorted);
+                setRepositories(sorted);
+                setTotalPages(Math.ceil(data.length / LIMITS_OF_PAGE));
              })
              .catch((err) => {
                console.error("ops! ocorreu um erro" + err);
              })
           // eslint-disable-next-line react-hooks/exhaustive-deps
       },[])
-      
       if (!repositories){
         return <div className="profiles-repository__name">Loading...</div>
     }
@@ -72,12 +92,10 @@ const ProfilesProfile = ({login}) => {
                </div>
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
                </div>
-{/* {[...repositories].sort((a, b) => {
-    b[repository.starred_count]-a[repository.starred_count]
-     }) } */}
-{[...repositories].slice(0,limit).map((repository, index) =>
-<ProfilesRepository login={login} key={index} repository={repository}/>,
-)}
+              {limitOfRepo.map((repository, index) =>
+             <ProfilesRepository login={login} page={page} key={index} repository={repository}/>
+            )}
+           {!repositories ?('') : (<ProfilesPagination data={[...repositories]} page={page} pages={pages} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} />)}
         </div>
     )
 }
