@@ -1,1 +1,0 @@
-export const LIMITS_OF_PAGE = 5

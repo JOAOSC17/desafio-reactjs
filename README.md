@@ -9,7 +9,6 @@ Esse projeto foi baseado em um desafio frontend, você pode encontrar desafios c
 Todo dia quando acordamos podemos escolher se vamos dar nosso melhor, porém as vezes o nosso melhor não é o suficiente e o melhor que podemos fazer é admitir isso e tentar melhorar.
 
 Abaixo  **OQ Podia Melhorar nesse projeto**:
-- Mostrar quantos dias que o repositório não  recebe updates
 - Mostrar as estrelas do perfil
 ## ℹ️ Para baixar todas dependencias
 ~~~ 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Repository.css'
 import { BsFillCircleFill, BsStar } from 'react-icons/bs'
 
