@@ -78,7 +78,7 @@
         min-width:100%;
         padding-bottom: 5px; 
         color: #ECEFF4;
-        max-height: 400px;
+        height: 450px;
     }
     .profiles-profile-side-bar__image{
         max-width: 200px;
@@ -136,7 +136,7 @@
         max-width:100%;
         padding-bottom: 10px;
         color: #ECEFF4;
-        height: 350px;
+        height: 400px;
     }
     .profiles-profile-side-bar__image{
         max-width: 150px;

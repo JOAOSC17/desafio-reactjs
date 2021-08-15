@@ -30,7 +30,7 @@ const ProfilesProfile = ({login}) => {
        })
        
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[login]);
     function backToSearch(){
         history.push('/');
     }
@@ -58,8 +58,8 @@ const ProfilesProfile = ({login}) => {
                console.error("ops! ocorreu um erro" + err);
              })
           // eslint-disable-next-line react-hooks/exhaustive-deps
-      },[])
-      if (!repositories){
+      },[login])
+      if (!repositories || !login){
         return <div className="profiles-repository__name">Loading...</div>
     }
     return (
@@ -76,7 +76,7 @@ const ProfilesProfile = ({login}) => {
                </div> 
                <div className="profiles-profile-side-bar__connect">
                    <span><FiMapPin className="icons-connect"/>{(profileSingle.location!==null)?(`${profileSingle.location}`) :('Location')}</span>
-                   <span><FiLink className="icons-connect"/><a target="_blank" rel="noreferrer" href={`https://${profileSingle.blog}`}>{(profileSingle.blog!==null)?(`${profileSingle.blog}`) :('mywebsite.com')}</a></span>
+                   <span><FiLink className="icons-connect"/><a target="_blank" rel="noreferrer" href={`https://${profileSingle.blog}`}>{(profileSingle.blog!=='')?(`${profileSingle.blog}`) :('mywebsite.com')}</a></span>
                    <span><FiTwitter className="icons-connect"/><a target="_blank" rel="noreferrer" href={`https://twitter.com/${profileSingle.twitter_username}`}>@{(profileSingle.twitter_username!==null)?(`${profileSingle.twitter_username}`) :('myTwitter')}</a></span>
                </div>
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
