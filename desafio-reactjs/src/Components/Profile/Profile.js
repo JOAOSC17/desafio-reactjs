@@ -18,17 +18,21 @@ const ProfilesProfile = ({login}) => {
     const startIndex = ( page - 1 ) * limitsOfPage;
     const limitOfRepo = [...repositories].slice(startIndex, startIndex + limitsOfPage);
     const history = useHistory();
+    const [fetch, setFetch] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
         
     useEffect(()=>{
+        setIsLoading(true); 
         api
        .get(`/${login}`)
        .then((response) => {
-           setProfileSingle(response.data)
+           setProfileSingle(response.data);
+           setFetch(true);
         })
        .catch((err) => {
          console.error("ops! ocorreu um erro" + err);
        })
-       
+       setIsLoading(false);       
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[login]);
     function backToSearch(){
@@ -45,6 +49,7 @@ const ProfilesProfile = ({login}) => {
         }
     }
     useEffect(()=>{
+        setIsLoading(true); 
               api
              .get(`/${login}/repos`)
              .then((response) => response.data).then((data)=>{
@@ -53,17 +58,19 @@ const ProfilesProfile = ({login}) => {
                 });
                 setRepositories(sorted);
                 setTotalPages(Math.ceil(data.length / limitsOfPage));
+                setFetch(true);
              })
              .catch((err) => {
                console.error("ops! ocorreu um erro" + err);
              })
+             setIsLoading(false); 
           // eslint-disable-next-line react-hooks/exhaustive-deps
       },[login])
-      if (!repositories || !login){
-        return <div className="profiles-repository__name">Loading...</div>
-    }
+    
     return (
         <div className="profiles-profile">
+            {isLoading && (<div className="profiles-repository__name">Loading...</div>)}
+            {!isLoading && profileSingle && fetch && ( 
             <div className="profiles-profile-side-bar"> 
             <span onClick={backToSearch} className="profiles-profile__icon-back"><VscArrowSmallLeft/></span>
                 <img className="profiles-profile-side-bar__image" src={profileSingle.avatar_url} alt={`Foto de ${profileSingle.name}`}/>
@@ -81,10 +88,15 @@ const ProfilesProfile = ({login}) => {
                </div>
                <button  onClick={backToSearch} className="profiles-profile-side-bar__button">Voltar</button>
                </div>
-              {limitOfRepo.map((repository, index) =>
+             )}
+             {!isLoading && repositories && fetch && (limitOfRepo.map((repository, index) =>
              <ProfilesRepository login={login} page={page} key={index} repository={repository}/>
-            )}
-           {!repositories ?('') : (<ProfilesPagination data={[...repositories]} page={page} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} />)}
+            ))}
+            {!isLoading && repositories.length>4 && fetch && (
+             <ProfilesPagination data={[...repositories]} page={page} totalPages={totalPages} nextPage={nextPage} prevPage={prevPage} />)}
+             {!isLoading && repositories.length===0 && fetch && (<div className="profiles-repository__name">Not Fount</div>)}
+
+
         </div>
     )
 }
